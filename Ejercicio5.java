@@ -1,12 +1,32 @@
-// Ejercicio 5: Total gastado en productos
-public class Ejercicio5 {
+public class Ejercicio15 {
     public static void main(String[] args) {
-        int[] precios = {10, 20, 30};
-        int[] cantidades = {2, 3, 1};
-        int total = 0;
-        for (int i = 0; i < precios.length; i++) {
-            total += precios[i] * cantidades[i];
+        String[] nombres = {"Carlos", "Ana", "Luis", "María"}; // Nombres de los trabajadores
+        int[] sueldos = {1000, 1200, 1100, 1300}; // Sueldos respectivos
+
+        // Paso 1: Calcular el sueldo promedio
+        int suma = 0;
+        for (int sueldo : sueldos) {
+            suma += sueldo;
         }
-        System.out.println("Total gastado: " + total);
+        double promedio = (double) suma / sueldos.length;
+        
+        System.out.println("Sueldo promedio: " + promedio);
+        
+        // Paso 2: Encontrar la menor diferencia con el promedio
+        double diferenciaMinima = Double.MAX_VALUE;
+        for (int sueldo : sueldos) {
+            double diferencia = Math.abs(sueldo - promedio);
+            if (diferencia < diferenciaMinima) {
+                diferenciaMinima = diferencia;
+            }
+        }
+
+        // Paso 3: Imprimir los empleados con el sueldo más cercano al promedio
+        System.out.print("Trabajadores con sueldo más cercano al promedio: ");
+        for (int i = 0; i < sueldos.length; i++) {
+            if (Math.abs(sueldos[i] - promedio) == diferenciaMinima) {
+                System.out.print(nombres[i] + " ");
+            }
+        }
     }
 }
