@@ -1,32 +1,39 @@
-public class Ejercicio15 {
-    public static void main(String[] args) {
-        String[] nombres = {"Carlos", "Ana", "Luis", "María"}; // Nombres de los trabajadores
-        int[] sueldos = {1000, 1200, 1100, 1300}; // Sueldos respectivos
-
-        // Paso 1: Calcular el sueldo promedio
+public class SueldosPromedio {
+    public static String nombresSueldos(String[] nombres, int[] sueldos) {
         int suma = 0;
-        for (int sueldo : sueldos) {
-            suma += sueldo;
+
+        // Calcular la suma de los sueldos
+        for (int i = 0; i < sueldos.length; i++) {
+            suma += sueldos[i];
         }
+
+        // Calcular el sueldo promedio
         double promedio = (double) suma / sueldos.length;
-        
-        System.out.println("Sueldo promedio: " + promedio);
-        
-        // Paso 2: Encontrar la menor diferencia con el promedio
-        double diferenciaMinima = Double.MAX_VALUE;
-        for (int sueldo : sueldos) {
-            double diferencia = Math.abs(sueldo - promedio);
-            if (diferencia < diferenciaMinima) {
-                diferenciaMinima = diferencia;
+
+        // Variables para almacenar los nombres de quienes tienen sueldo >= promedio
+        String resultado = "";
+        int contador = 0;
+
+        // Buscar quienes tienen sueldo mayor o igual al promedio
+        for (int i = 0; i < sueldos.length; i++) {
+            if (sueldos[i] >= promedio) {
+                resultado += nombres[i] + "\n";
+                contador++;
             }
         }
 
-        // Paso 3: Imprimir los empleados con el sueldo más cercano al promedio
-        System.out.print("Trabajadores con sueldo más cercano al promedio: ");
-        for (int i = 0; i < sueldos.length; i++) {
-            if (Math.abs(sueldos[i] - promedio) == diferenciaMinima) {
-                System.out.print(nombres[i] + " ");
-            }
-        }
+        // Agregar el resultado final
+        resultado += "Fueron " + contador + " los empleados con sueldo mayor o igual al promedio.";
+
+        return resultado+"\npromedio: "+promedio;
+    }
+
+    public static void main(String[] args) {
+        // Datos de prueba
+        String[] nombres = {"A", "B", "C", "D", "E"};
+        int[] sueldos = {100, 200, 150, 200, 100};
+
+        // Llamar a la función y mostrar el resultado
+        System.out.println(nombresSueldos(nombres, sueldos));
     }
 }
